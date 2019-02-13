@@ -11,5 +11,5 @@ workflows:
           namespace: brownjohnf
           project: alpine
           test_command: which vim
-          test_stage: main
+          test_target: main
 
