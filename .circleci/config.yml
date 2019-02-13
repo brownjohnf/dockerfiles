@@ -12,4 +12,5 @@ workflows:
           project: alpine
           test_command: which vim
           test_target: main
+          path: alpine
 
