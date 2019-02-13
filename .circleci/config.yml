@@ -10,7 +10,7 @@ workflows:
       - docker/build-test-push:
           namespace: brownjohnf
           project: alpine
-          test_command: which vim
+          test_command: vim --version | grep NVIM
           test_target: main
           path: alpine
 
