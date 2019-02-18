@@ -4,6 +4,7 @@ CMD ["/bin/bash"]
 
 RUN apk add --no-cache \
     bash \
+    curl \
     git \
     neovim \
     openssh \
