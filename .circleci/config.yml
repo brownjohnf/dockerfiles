@@ -8,9 +8,17 @@ workflows:
   build_and_push:
     jobs:
       - docker/build-test-push:
+          name: alpine
           namespace: brownjohnf
           project: alpine
           test_command: vim --version | grep NVIM
           test_target: main
           path: alpine
+      - docker/build-test-push:
+          name: docker
+          namespace: brownjohnf
+          project: docker
+          test_command: which docker
+          test_target: main
+          path: docker
 
