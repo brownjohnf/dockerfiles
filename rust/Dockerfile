@@ -1,16 +1,15 @@
 FROM brownjohnf/verto:verto as verto
 
-FROM library/alpine:latest as main
+FROM library/rust:slim as main
 
 CMD ["/bin/bash"]
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     bash \
     curl \
     git \
     jq \
     neovim \
-    openssh \
     wget \
   && ln -s $(which nvim) /usr/local/bin/vim
 

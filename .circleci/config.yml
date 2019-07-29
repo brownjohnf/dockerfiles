@@ -2,11 +2,18 @@
 version: 2.1
 
 orbs:
-  docker: aengelas/docker@volatile
+  docker: brownjohnf/docker@volatile
 
 workflows:
-  build_and_push:
+  default:
     jobs:
+      - docker/build-test-push:
+          name: verto
+          namespace: brownjohnf
+          project: verto
+          test_command: target/release/verto -V
+          test_target: verto
+          path: verto
       - docker/build-test-push:
           name: alpine
           namespace: brownjohnf
@@ -14,6 +21,8 @@ workflows:
           test_command: vim --version | grep NVIM
           test_target: main
           path: alpine
+          requires:
+            - verto
       - docker/build-test-push:
           name: docker
           namespace: brownjohnf
@@ -21,4 +30,15 @@ workflows:
           test_command: which docker
           test_target: main
           path: docker
+          requires:
+            - verto
+      - docker/build-test-push:
+          name: rust
+          namespace: brownjohnf
+          project: rust
+          test_command: cargo --version && rustc --version
+          test_target: main
+          path: rust
+          requires:
+            - verto
 
